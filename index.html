@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Stud Studios</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #f3f4f6;
+            min-h: 100vh;
+        }
+
+        .title-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Tiled green stud background image for the top bar with fade mask */
+        .green-stud-topbar {
+            background-image: linear-gradient(rgba(16, 185, 129, 0.85), rgba(5, 150, 105, 0.85)), 
+                              url("https://imgs.search.brave.com/IXD98gsFg882VzNMSdqYB74NehEcOy5LL1XxegtCQK4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ci5y/YnhjZG4uY29tLzE4/MERBWS1mOGQ5ZjFm/NzIwODg2YjgzYmYx/YmM5MTkzMGM2YzZm/OS80MjAvNDIwL0Rl/Y2FsL1dlYnAvbm9G/aWx0ZXI");
+            background-repeat: repeat;
+            background-size: 160px 160px;
+            background-position: center;
+            background-color: #10b981;
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start cursor-pointer select-none">
+
+    <!-- CANVAS FOR GROUND BREAKING PARTICLES -->
+    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
+    <!-- TOP BAR WITH TILED GREEN STUD BACKGROUND IMAGE -->
+    <header id="topHeader" class="w-full h-44 sm:h-56 green-stud-topbar flex items-center justify-center fixed top-0 left-0 right-0 z-10 pointer-events-none transition-opacity duration-75">
+    </header>
+
+    <!-- SPACER FOR FIXED HEADER -->
+    <div class="h-44 sm:h-56 w-full"></div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main id="mainContent" class="w-full max-w-4xl px-6 text-center pt-8 sm:pt-12 pb-32">
+        <!-- TITLE: "The stud studios" -->
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight title-font uppercase mb-4 drop-shadow-md">
+            The stud studios
+        </h1>
+
+        <!-- DESCRIPTION: "Upcoming game developer studio for roblox!" -->
+        <p class="text-xl sm:text-2xl md:text-3xl text-emerald-400 font-bold tracking-wide mb-32">
+            Upcoming game developer studio for roblox!
+        </p>
+
+        <!-- SECTION: "Why does this studio exist?" -->
+        <section class="mt-20 pt-16 border-t border-emerald-900/40 flex flex-col items-center">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight title-font uppercase mb-8 text-emerald-400">
+                Why does this studio exist?
+            </h2>
+            <p class="text-lg sm:text-xl md:text-2xl text-gray-300 font-medium leading-relaxed max-w-3xl bg-emerald-950/20 p-8 rounded-2xl border border-emerald-500/20 shadow-xl backdrop-blur-sm mb-12">
+                Every since i first joined roblox, i wanted to have my own game studio so i can make good games or bad games or whatever, it became my hobby and soon i want to start making money or make people happy and have fun with my games!
+            </p>
+
+            <!-- STUDIO LINKS SECTION -->
+            <div class="flex flex-wrap items-center justify-center gap-6">
+                <!-- LINK 1: ROBLOX GROUP (OPENS IN SEPARATE TAB) -->
+                <!-- CUSTOMIZE: Change href below to your actual Roblox group URL -->
+                <a href="https://www.roblox.com/groups" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-lg rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 border border-emerald-400/30">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M5.165 0L0 18.835L18.835 24L24 5.165L5.165 0ZM13.88 15.688L8.312 14.195L9.805 8.627L15.373 10.12L13.88 15.688Z"/></svg>
+                    <span>Roblox Studio Group</span>
+                    <svg class="w-5 h-5 opacity-70 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+
+                <!-- LINK 2: OUR GAMES (OPENS CUSTOM GAMES WINDOW) -->
+                <button id="openGamesBtn" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 font-extrabold text-lg rounded-2xl border-2 border-emerald-500/50 hover:border-emerald-400 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2h4zm0 0R0 0h6a2 2 0 012 2v14a2 2 0 01-2 2h-6a2 2 0 01-2-2V6a2 2 0 012-2z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10h.01M19 10h.01M15 14h.01M19 14h.01"/></svg>
+                    <span>Our Roblox Games</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- GAMES SHOWCASE WINDOW (Full window view hidden by default) -->
+    <div id="gamesWindow" class="fixed inset-0 z-50 bg-[#090d12] hidden flex-col items-center justify-start overflow-y-auto p-6 sm:p-12">
+        <!-- WINDOW TOP HEADER BAR -->
+        <div class="w-full max-w-5xl flex items-center justify-between mb-10 pb-6 border-b border-emerald-900/50">
+            <div>
+                <h2 class="text-3xl sm:text-5xl font-black text-white title-font uppercase tracking-tight">Studio Games</h2>
+                <p class="text-emerald-400 font-semibold text-sm sm:text-base mt-1">Current games owned & created by The Stud Studios</p>
+            </div>
+            <!-- BACK BUTTON -->
+            <button id="closeGamesBtn" class="px-6 py-3 bg-red-600/20 hover:bg-red-600 text-red-300 hover:text-white font-bold rounded-xl border border-red-500/40 transition-all flex items-center gap-2 hover:scale-105 active:scale-95">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                <span>Back To Studio</span>
+            </button>
+        </div>
+
+        <!-- GAMES GRID CARDS -->
+        <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- GAME TITLE CARD 1 (EDITABLE) -->
+            <div class="bg-emerald-950/30 border border-emerald-500/30 hover:border-emerald-400/80 rounded-3xl p-6 flex flex-col sm:flex-row gap-6 items-center shadow-2xl transition-all duration-300 hover:scale-[1.02] group">
+                <!-- CUSTOMIZABLE GAME ICON -->
+                <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl overflow-hidden bg-emerald-900/50 border-2 border-emerald-500/40 flex-shrink-0 shadow-lg relative">
+                    <img src="https://placehold.co/300x300/064e3b/10b981?text=Game+Icon+1" alt="Game Icon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/300x300/064e3b/10b981?text=Game+1'">
+                </div>
+                <div class="flex-1 text-center sm:text-left flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
+                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider rounded-full border border-emerald-500/30">Active</span>
+                            <span class="text-xs text-gray-400 font-semibold">Roblox Game</span>
+                        </div>
+                        <!-- CUSTOMIZABLE GAME TITLE -->
+                        <h3 class="text-2xl font-black text-white title-font mb-2 group-hover:text-emerald-300 transition-colors">Stud Simulator</h3>
+                        <!-- CUSTOMIZABLE GAME DESCRIPTION -->
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">A fast-paced building & stud collecting adventure where you grow your Roblox studio empire!</p>
+                    </div>
+                    <!-- CUSTOMIZABLE PLAY GAME LINK -->
+                    <a href="https://www.roblox.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-black rounded-xl shadow-lg transition-all hover:shadow-emerald-500/20 active:scale-95">
+                        <span>Play Game</span>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- GAME TITLE CARD 2 (EDITABLE) -->
+            <div class="bg-emerald-950/30 border border-emerald-500/30 hover:border-emerald-400/80 rounded-3xl p-6 flex flex-col sm:flex-row gap-6 items-center shadow-2xl transition-all duration-300 hover:scale-[1.02] group">
+                <!-- CUSTOMIZABLE GAME ICON -->
+                <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl overflow-hidden bg-emerald-900/50 border-2 border-emerald-500/40 flex-shrink-0 shadow-lg relative">
+                    <img src="https://placehold.co/300x300/065f46/34d399?text=Game+Icon+2" alt="Game Icon" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/300x300/065f46/34d399?text=Game+2'">
+                </div>
+                <div class="flex-1 text-center sm:text-left flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex items-center justify-center sm:justify-start gap-2 mb-2">
+                            <span class="px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider rounded-full border border-amber-500/30">In Development</span>
+                            <span class="text-xs text-gray-400 font-semibold">Coming Soon</span>
+                        </div>
+                        <!-- CUSTOMIZABLE GAME TITLE -->
+                        <h3 class="text-2xl font-black text-white title-font mb-2 group-hover:text-emerald-300 transition-colors">Project Roblox Obby</h3>
+                        <!-- CUSTOMIZABLE GAME DESCRIPTION -->
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">An epic obstacle course filled with tricky jumps, stud secrets, and customizable characters.</p>
+                    </div>
+                    <!-- CUSTOMIZABLE LINK -->
+                    <a href="https://www.roblox.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-800/60 hover:bg-emerald-700/80 text-emerald-200 font-black rounded-xl border border-emerald-500/40 transition-all active:scale-95">
+                        <span>View Group Page</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Web Audio API bouncy ball sound synthesizer
+        let audioCtx = null;
+
+        function playBouncySound() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const now = audioCtx.currentTime;
+
+            // Primary bouncy spring oscillator
+            const osc1 = audioCtx.createOscillator();
+            const gain1 = audioCtx.createGain();
+            osc1.type = 'sine';
+            osc1.frequency.setValueAtTime(160, now);
+            osc1.frequency.exponentialRampToValueAtTime(540, now + 0.07);
+            osc1.frequency.exponentialRampToValueAtTime(130, now + 0.22);
+
+            gain1.gain.setValueAtTime(0.35, now);
+            gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+
+            osc1.connect(gain1);
+            gain1.connect(audioCtx.destination);
+
+            osc1.start(now);
+            osc1.stop(now + 0.24);
+
+            // Secondary echo bounce
+            const osc2 = audioCtx.createOscillator();
+            const gain2 = audioCtx.createGain();
+            osc2.type = 'triangle';
+            osc2.frequency.setValueAtTime(240, now + 0.11);
+            osc2.frequency.exponentialRampToValueAtTime(420, now + 0.17);
+            osc2.frequency.exponentialRampToValueAtTime(180, now + 0.28);
+
+            gain2.gain.setValueAtTime(0, now);
+            gain2.gain.setValueAtTime(0.2, now + 0.11);
+            gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+
+            osc2.connect(gain2);
+            gain2.connect(audioCtx.destination);
+
+            osc2.start(now + 0.11);
+            osc2.stop(now + 0.3);
+        }
+
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let shockwaves = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 9 + 3;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed - Math.random() * 4;
+                this.gravity = 0.38;
+                this.size = Math.random() * 8 + 4;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.vRot = (Math.random() - 0.5) * 0.4;
+                this.life = 1.0;
+                this.decay = Math.random() * 0.02 + 0.025;
+
+                // Roblox green studs & rock colors
+                const colors = ['#10b981', '#059669', '#34d399', '#a7f3d0', '#4b5563', '#374151', '#1f2937'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += this.gravity;
+                this.rotation += this.vRot;
+                this.life -= this.decay;
+            }
+
+            draw(ctx) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = Math.max(0, this.life);
+                ctx.fillStyle = this.color;
+
+                // Square blocky debris chunk
+                ctx.beginPath();
+                ctx.rect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        class Shockwave {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 4;
+                this.maxRadius = Math.random() * 30 + 35;
+                this.speed = Math.random() * 3 + 4;
+                this.life = 1.0;
+                this.color = '#10b981';
+            }
+
+            update() {
+                this.radius += this.speed;
+                this.life = 1.0 - (this.radius / this.maxRadius);
+            }
+
+            draw(ctx) {
+                if (this.life <= 0) return;
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 3;
+                ctx.globalAlpha = Math.max(0, this.life);
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+
+        function spawnEffects(x, y) {
+            for (let i = 0; i < 22; i++) {
+                particles.push(new Particle(x, y));
+            }
+            shockwaves.push(new Shockwave(x, y));
+            playBouncySound();
+        }
+
+        document.addEventListener('pointerdown', (e) => {
+            // Avoid spawning particles when clicking directly on buttons/links
+            if (e.target.closest('a') || e.target.closest('button')) return;
+            spawnEffects(e.clientX, e.clientY);
+        });
+
+        // Top bar scroll-fade effect
+        const topHeader = document.getElementById('topHeader');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            // Fade header from opacity 1 to 0 over 250px of scrolling
+            const opacity = Math.max(0, 1 - scrollY / 250);
+            topHeader.style.opacity = opacity;
+        });
+
+        // Toggle Games Window View
+        const mainContent = document.getElementById('mainContent');
+        const openGamesBtn = document.getElementById('openGamesBtn');
+        const closeGamesBtn = document.getElementById('closeGamesBtn');
+        const gamesWindow = document.getElementById('gamesWindow');
+
+        openGamesBtn.addEventListener('click', () => {
+            mainContent.classList.add('hidden');
+            topHeader.classList.add('hidden');
+            gamesWindow.classList.remove('hidden');
+            gamesWindow.classList.add('flex');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        closeGamesBtn.addEventListener('click', () => {
+            gamesWindow.classList.add('hidden');
+            gamesWindow.classList.remove('flex');
+            mainContent.classList.remove('hidden');
+            topHeader.classList.remove('hidden');
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = shockwaves.length - 1; i >= 0; i--) {
+                const s = shockwaves[i];
+                s.update();
+                s.draw(ctx);
+                if (s.life <= 0) shockwaves.splice(i, 1);
+            }
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.update();
+                p.draw(ctx);
+                if (p.life <= 0) particles.splice(i, 1);
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
